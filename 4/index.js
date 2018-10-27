@@ -3,6 +3,8 @@ const { MongoClient } = require('mongodb');
 const template = require('./template');
 
 const APP_ID = process.env.ID;
+const PORT = process.env.PORT;
+
 const isRoot = path => !path || path === '/' || path === '#';
 
 (async () => {
@@ -25,5 +27,5 @@ const isRoot = path => !path || path === '/' || path === '#';
       .toArray();
     ctx.body = template(items);
   });
-  app.listen(3000);
+  app.listen(PORT);
 })();
