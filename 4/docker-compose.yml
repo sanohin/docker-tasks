@@ -1,0 +1,22 @@
+version: '3'
+services:
+  web:
+    image: 127.0.0.1:5000/webapp
+    build: .
+    ports:
+      - '3000:3000'
+    environment:
+      - ID={{.Task.Slot}}
+    depends_on:
+      - mongo
+    deploy:
+      replicas: 3
+  mongo:
+    image: mongo
+    volumes:
+      - data:/data/db
+    ports:
+      - '27017:27017'
+volumes:
+  data:
+    driver: local
